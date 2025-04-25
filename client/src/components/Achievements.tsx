@@ -46,13 +46,13 @@ const Achievements: React.FC<AchievementsProps> = ({ achievements, challenges })
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-rajdhani font-bold text-xl">Achievements</h2>
         <Link href="/profile">
-          <motion.a
+          <motion.div
             whileHover={{ x: 3 }}
-            className="text-primary text-sm flex items-center"
+            className="text-primary text-sm flex items-center cursor-pointer"
           >
             All badges
             <i className="ri-arrow-right-s-line ml-1"></i>
-          </motion.a>
+          </motion.div>
         </Link>
       </div>
       
