@@ -4,12 +4,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/context/LanguageContext";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
-import Trade from "@/pages/Trade";
 import Profile from "@/pages/Profile";
 import Settings from "@/pages/Settings";
 import BotSettings from "@/pages/BotSettings";
 import Mining from "@/pages/Mining";
 import Social from "@/pages/Social";
+import Miners from "@/pages/Miners";
+import Clans from "@/pages/Clans";
+import Games from "@/pages/Games";
 import { useState, useEffect } from "react";
 import { useUser, useUserStore } from "./hooks/useUser";
 import { useLanguage } from "@/context/LanguageContext";
@@ -63,7 +65,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/trade" component={Trade} />
+      <Route path="/miners" component={Miners} />
+      <Route path="/clans" component={Clans} />
+      <Route path="/games" component={Games} />
       <Route path="/profile" component={Profile} />
       <Route path="/settings" component={Settings} />
       <Route path="/bots" component={BotSettings} />

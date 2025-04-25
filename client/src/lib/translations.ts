@@ -24,6 +24,10 @@ const fa = {
   "nav.social": "شبکه اجتماعی",
   "nav.profile": "پروفایل",
   "nav.settings": "تنظیمات",
+  "nav.miners": "دستگاه استخراج",
+  "nav.clans": "کلن ها",
+  "nav.games": "بازی ها",
+  "nav.bots": "ربات ها",
   
   // Dashboard
   "dashboard.title": "داشبورد",
@@ -131,6 +135,28 @@ const fa = {
   "settings.terms": "شرایط استفاده",
   "settings.privacy": "حریم خصوصی",
   
+  // Miners
+  "miners.title": "دستگاه های استخراج",
+  "miners.dashboard": "داشبورد استخراج",
+  "miners.active": "فعال",
+  "miners.inactive": "غیرفعال",
+  "miners.earnings": "درآمد",
+  "miners.hashrate": "نرخ هش",
+  "miners.efficiency": "کارایی",
+  "miners.teambonus": "امتیاز تیم",
+  "miners.list": "لیست دستگاه ها",
+  "miners.refresh": "بازخوانی",
+  "miners.level": "سطح",
+  "miners.deactivate": "غیرفعال کردن",
+  "miners.activate": "فعال کردن",
+  "miners.upgrade": "ارتقاء",
+  "miners.power": "توان",
+  "miners.boosted": "تقویت شده",
+  "miners.boost": "تقویت",
+  "miners.boost.remaining": "{hours} ساعت باقیمانده",
+  "miners.close": "بستن",
+  "miners.boosted.success": "{name} برای مدت {duration} تقویت شد",
+  
   // Languages
   "lang.en": "English",
   "lang.fa": "فارسی",
@@ -157,6 +183,10 @@ const en = {
   "nav.social": "Social",
   "nav.profile": "Profile",
   "nav.settings": "Settings",
+  "nav.miners": "Miners",
+  "nav.clans": "Clans",
+  "nav.games": "Games",
+  "nav.bots": "Bots",
   
   // Dashboard
   "dashboard.title": "Dashboard",
@@ -263,6 +293,28 @@ const en = {
   "settings.support": "Support",
   "settings.terms": "Terms of Service",
   "settings.privacy": "Privacy Policy",
+  
+  // Miners
+  "miners.title": "Mining Rigs",
+  "miners.dashboard": "Mining Dashboard",
+  "miners.active": "Active",
+  "miners.inactive": "Inactive",
+  "miners.earnings": "Earnings",
+  "miners.hashrate": "Hash Rate",
+  "miners.efficiency": "Efficiency",
+  "miners.teambonus": "Team Bonus",
+  "miners.list": "Miners List",
+  "miners.refresh": "Refresh",
+  "miners.level": "Level",
+  "miners.deactivate": "Deactivate",
+  "miners.activate": "Activate",
+  "miners.upgrade": "Upgrade",
+  "miners.power": "Power",
+  "miners.boosted": "Boosted",
+  "miners.boost": "Boost",
+  "miners.boost.remaining": "{hours} hours remaining",
+  "miners.close": "Close",
+  "miners.boosted.success": "{name} has been boosted for {duration}",
   
   // Languages
   "lang.en": "English",

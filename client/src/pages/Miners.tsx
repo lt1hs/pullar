@@ -337,7 +337,7 @@ const Miners: React.FC = () => {
               } flex items-center justify-center`}>
                 {selectedMiner.type === 'basic' && <ZapIcon className="w-10 h-10 text-primary" />}
                 {selectedMiner.type === 'advanced' && <TrendingUpIcon className="w-10 h-10 text-primary" />}
-                {selectedMiner.type === 'premium' && <FireIcon className="w-10 h-10 text-primary" />}
+                {selectedMiner.type === 'premium' && <FlameIcon className="w-10 h-10 text-primary" />}
               </div>
             </div>
             
@@ -375,7 +375,7 @@ const Miners: React.FC = () => {
                     <p className="font-medium">{t('miners.boosted')}</p>
                     <p className="text-xs">{t('miners.boost.remaining', { hours: boostDuration })}</p>
                   </div>
-                  <FireIcon className="w-6 h-6 animate-pulse" />
+                  <FlameIcon className="w-6 h-6 animate-pulse" />
                 </div>
               </div>
             )}
