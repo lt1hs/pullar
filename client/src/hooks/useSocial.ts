@@ -4,6 +4,19 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useUser } from "@/hooks/useUser";
 import React from "react";
 
+export interface Comment {
+  id: number;
+  postId: number;
+  userId: number;
+  content: string;
+  createdAt: string;
+  user?: {
+    id: number;
+    username: string;
+    profileImageUrl?: string;
+  };
+}
+
 interface Post {
   id: number;
   userId: number;
@@ -13,6 +26,9 @@ interface Post {
   likes: number;
   comments: number;
   shares: number;
+  tags?: string[];
+  commentsList?: Comment[];
+  reactions?: Record<string, number>; // Emoji reactions count
   user?: {
     id: number;
     username: string;
@@ -24,6 +40,13 @@ interface NewPost {
   userId: number;
   content: string;
   imageUrl?: string;
+  tags?: string[];
+}
+
+interface NewComment {
+  postId: number;
+  userId: number;
+  content: string;
 }
 
 interface SocialStore {
@@ -61,8 +84,19 @@ export const useSocial = () => {
   
   // Like post mutation
   const likePostMutation = useMutation({
-    mutationFn: async (postId: number) => {
-      const response = await apiRequest('POST', `/api/posts/${postId}/like`, {});
+    mutationFn: async ({ postId, emoji }: { postId: number; emoji?: string }) => {
+      const response = await apiRequest('POST', `/api/posts/${postId}/like`, { emoji });
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/posts'] });
+    },
+  });
+  
+  // Add comment mutation
+  const addCommentMutation = useMutation({
+    mutationFn: async (newComment: NewComment) => {
+      const response = await apiRequest('POST', `/api/posts/${newComment.postId}/comments`, newComment);
       return response.json();
     },
     onSuccess: () => {
@@ -113,5 +147,7 @@ export const useSocial = () => {
     isCreatingPost: createPostMutation.isPending,
     likePost: likePostMutation.mutate,
     isLikingPost: likePostMutation.isPending,
+    addComment: addCommentMutation.mutate,
+    isAddingComment: addCommentMutation.isPending,
   };
 };

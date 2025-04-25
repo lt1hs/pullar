@@ -184,7 +184,7 @@ const MiningSection: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             disabled={isCollecting}
-            onClick={collectTokens}
+            onClick={() => collectTokens()}
             className="relative bg-surface-light border border-primary/30 rounded-lg py-2 text-center text-sm font-medium hover:bg-primary/10 transition disabled:opacity-50"
           >
             <ShareIcon className="text-primary block mx-auto mb-1 h-5 w-5" />
