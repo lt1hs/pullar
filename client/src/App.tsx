@@ -1,6 +1,7 @@
 import { Switch, Route } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LanguageProvider } from "@/context/LanguageContext";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Trade from "@/pages/Trade";
@@ -11,10 +12,12 @@ import Mining from "@/pages/Mining";
 import Social from "@/pages/Social";
 import { useState, useEffect } from "react";
 import { useUser, useUserStore } from "./hooks/useUser";
+import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 function Router() {
   const { user, login } = useUser();
+  const { t } = useLanguage();
   const [showLogin, setShowLogin] = useState(true);
   
   useEffect(() => {
@@ -33,7 +36,7 @@ function Router() {
           className="min-h-screen flex flex-col items-center justify-center p-4"
         >
           <div className="w-full max-w-md neon-border bg-surface rounded-2xl p-6">
-            <h1 className="text-3xl mb-6 text-center neon-text-primary">CryptoVerse</h1>
+            <h1 className="text-3xl mb-6 text-center neon-text-primary">{t('app.name')}</h1>
             <div className="space-y-4">
               <button 
                 onClick={() => {
@@ -42,13 +45,13 @@ function Router() {
                 }} 
                 className="w-full py-3 bg-gradient-to-r from-primary to-secondary rounded-lg text-white font-medium"
               >
-                Demo Login
+                {t('app.demo.login')}
               </button>
               <button 
                 onClick={() => setShowLogin(false)} 
                 className="w-full py-3 text-center text-primary font-medium border border-primary/30 rounded-lg hover:bg-primary/10 transition"
               >
-                Continue as Guest
+                {t('app.continue.guest')}
               </button>
             </div>
           </div>
@@ -75,7 +78,9 @@ function App() {
   return (
     <TooltipProvider>
       <Toaster />
-      <Router />
+      <LanguageProvider>
+        <Router />
+      </LanguageProvider>
     </TooltipProvider>
   );
 }
