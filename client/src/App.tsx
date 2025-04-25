@@ -1,6 +1,4 @@
 import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
@@ -9,11 +7,11 @@ import Trade from "@/pages/Trade";
 import Profile from "@/pages/Profile";
 import Settings from "@/pages/Settings";
 import { useState, useEffect } from "react";
-import { useUser } from "./hooks/useUser";
+import { useUser, useUserStore } from "./hooks/useUser";
 import { motion, AnimatePresence } from "framer-motion";
 
 function Router() {
-  const { user } = useUser();
+  const { user, login } = useUser();
   const [showLogin, setShowLogin] = useState(true);
   
   useEffect(() => {
@@ -37,7 +35,7 @@ function Router() {
               <button 
                 onClick={() => {
                   // Auto-login for demo purposes
-                  useUser.getState().login("CryptoWizard", "password123");
+                  login("CryptoWizard", "password123");
                 }} 
                 className="w-full py-3 bg-gradient-to-r from-primary to-secondary rounded-lg text-white font-medium"
               >
@@ -69,12 +67,10 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Router />
+    </TooltipProvider>
   );
 }
 
