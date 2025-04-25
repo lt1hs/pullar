@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 186 100% 50%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 272 100% 64%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 158 92% 51%;
+  --accent-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  
+  --success: 158 92% 51%;
+  --warning: 39 84% 70%;
+  --error: 0 84% 65%;
+  
+  --surface: 222 20% 11%;
+  --surface-light: 223 14% 16%;
+  
+  --sidebar-background: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+  
+  --chart-1: 186 100% 50%;
+  --chart-2: 272 100% 64%;
+  --chart-3: 158 92% 51%;
+  --chart-4: 39 84% 70%;
+  --chart-5: 0 84% 65%;
+  
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter bg-background text-foreground overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-rajdhani font-bold;
+  }
+}
+
+@layer utilities {
+  .neon-border {
+    position: relative;
+  }
+  
+  .neon-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .neon-text-primary {
+    @apply text-primary;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.7);
+  }
+  
+  .neon-text-secondary {
+    @apply text-secondary;
+    text-shadow: 0 0 10px rgba(153, 69, 255, 0.7);
+  }
+  
+  .neon-text-accent {
+    @apply text-accent;
+    text-shadow: 0 0 10px rgba(20, 241, 149, 0.7);
+  }
+  
+  .font-rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+  }
+  
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Chart styling */
+.chart-line {
+  stroke: hsl(var(--primary));
+  stroke-width: 2;
+  fill: none;
+  filter: drop-shadow(0 0 3px rgba(0, 242, 255, 0.7));
+}
+
+.chart-area {
+  fill: url(#chartGradient);
+  opacity: 0.2;
+}
+
+.chart-dot {
+  fill: hsl(var(--primary));
+  filter: drop-shadow(0 0 3px rgba(0, 242, 255, 0.7));
+}
+
+/* Mining animation */
+@keyframes mine {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+.mining-animation {
+  animation: mine 2s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
