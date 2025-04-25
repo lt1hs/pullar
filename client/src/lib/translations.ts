@@ -31,6 +31,7 @@ const fa = {
   "dashboard.balance": "موجودی",
   "dashboard.gameTokens": "توکن بازی",
   "dashboard.tradeTokens": "توکن معامله",
+  "dashboard.level": "سطح",
   
   // Mining
   "mining.title": "عملیات استخراج",
@@ -163,6 +164,7 @@ const en = {
   "dashboard.balance": "Balance",
   "dashboard.gameTokens": "Game Tokens",
   "dashboard.tradeTokens": "Trade Tokens",
+  "dashboard.level": "Level",
   
   // Mining
   "mining.title": "Mining Operations",

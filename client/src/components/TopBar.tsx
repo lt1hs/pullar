@@ -2,9 +2,12 @@ import React from "react";
 import { useUser } from "@/hooks/useUser";
 import { motion } from "framer-motion";
 import { BellIcon } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const TopBar: React.FC = () => {
   const { user } = useUser();
+  const { t } = useLanguage();
   
   if (!user) return null;
   
@@ -28,7 +31,7 @@ const TopBar: React.FC = () => {
         <div className="ml-2">
           <p className="font-rajdhani font-semibold text-sm">{user.username}</p>
           <div className="flex items-center">
-            <span className="text-xs text-primary font-medium">Level {user.level}</span>
+            <span className="text-xs text-primary font-medium">{t('dashboard.level')} {user.level}</span>
             <div className="ml-2 h-1.5 w-12 bg-surface-light rounded-full overflow-hidden">
               <div 
                 className="h-full rounded-full bg-gradient-to-r from-primary to-secondary" 
@@ -61,6 +64,8 @@ const TopBar: React.FC = () => {
           <BellIcon className="h-5 w-5" />
           <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-error flex items-center justify-center text-[10px] font-medium">3</span>
         </motion.button>
+        
+        <LanguageSwitcher />
       </div>
     </motion.header>
   );
