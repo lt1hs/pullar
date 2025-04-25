@@ -6,6 +6,7 @@ import Home from "@/pages/Home";
 import Trade from "@/pages/Trade";
 import Profile from "@/pages/Profile";
 import Settings from "@/pages/Settings";
+import BotSettings from "@/pages/BotSettings";
 import { useState, useEffect } from "react";
 import { useUser, useUserStore } from "./hooks/useUser";
 import { motion, AnimatePresence } from "framer-motion";
@@ -60,6 +61,7 @@ function Router() {
       <Route path="/trade" component={Trade} />
       <Route path="/profile" component={Profile} />
       <Route path="/settings" component={Settings} />
+      <Route path="/bots" component={BotSettings} />
       <Route component={NotFound} />
     </Switch>
   );

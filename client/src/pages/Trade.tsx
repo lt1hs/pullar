@@ -12,8 +12,165 @@ import { NeonButton } from "@/components/ui/neon-button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ArrowUpIcon, ArrowDownIcon, BarChart2Icon, WalletIcon, TrendingUpIcon } from "lucide-react";
+import { ArrowUpIcon, ArrowDownIcon, BarChart2Icon, WalletIcon, TrendingUpIcon, ArrowRightIcon, RefreshCwIcon, MoreHorizontalIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
+
+interface PortfolioViewProps {
+  userId: number;
+}
+
+const PortfolioView: React.FC<PortfolioViewProps> = ({ userId }) => {
+  const { useHoldings, calculatePortfolioValue, tradeCrypto } = useCrypto();
+  const { data: holdings = [], isLoading } = useHoldings(userId);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  
+  const portfolioValue = calculatePortfolioValue(holdings);
+  
+  // Simulate portfolio change for now (would be calculated from historical data in a real app)
+  const portfolioChange = Math.random() * 20 - 10; // Random between -10% and +10%
+  const isPositiveChange = portfolioChange >= 0;
+
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    // In a real app this would refresh the portfolio data
+    setTimeout(() => {
+      setIsRefreshing(false);
+    }, 1000);
+  };
+  
+  if (isLoading) {
+    return (
+      <div className="space-y-4">
+        <Skeleton className="h-20 w-full rounded-xl bg-surface-light" />
+        <Skeleton className="h-12 w-full rounded-xl bg-surface-light" />
+        <Skeleton className="h-20 w-full rounded-xl bg-surface-light" />
+        <Skeleton className="h-20 w-full rounded-xl bg-surface-light" />
+      </div>
+    );
+  }
+  
+  return (
+    <div className="space-y-4">
+      <Card className="bg-surface border-none neon-border">
+        <CardContent className="pt-6">
+          <div className="flex justify-between items-center mb-3">
+            <div>
+              <p className="text-gray-400 text-sm">Portfolio value</p>
+              <div className="text-3xl font-bold neon-text-primary mt-1">
+                ${portfolioValue.toFixed(2)}
+              </div>
+            </div>
+            <div className="text-right">
+              <div className={`text-sm ${isPositiveChange ? 'text-green-500' : 'text-red-500'}`}>
+                {isPositiveChange ? '+' : ''}{portfolioChange.toFixed(2)}%
+              </div>
+              <div className="text-xs text-gray-400 mt-1">24h change</div>
+            </div>
+          </div>
+          
+          <div className="h-12 w-full relative">
+            <svg width="100%" height="100%" viewBox="0 0 300 50" preserveAspectRatio="none">
+              <path 
+                className="chart-line" 
+                style={{ stroke: isPositiveChange ? 'hsl(var(--primary))' : 'hsl(var(--secondary))' }} 
+                d={isPositiveChange 
+                  ? "M0,40 C20,35 40,20 60,25 C80,30 100,10 120,5 C140,0 160,15 180,10 C200,5 220,15 240,10 C260,5 280,25 300,20"
+                  : "M0,10 C20,15 40,30 60,25 C80,20 100,40 120,45 C140,50 160,35 180,40 C200,45 220,35 240,40 C260,45 280,25 300,30"
+                }
+              />
+            </svg>
+          </div>
+          
+          <div className="flex justify-between mt-4">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleRefresh}
+              disabled={isRefreshing}
+              className="text-xs gap-1"
+            >
+              <RefreshCwIcon className={`h-3 w-3 ${isRefreshing ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="text-xs gap-1"
+            >
+              <MoreHorizontalIcon className="h-3 w-3" />
+              Details
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+      
+      {holdings.length === 0 ? (
+        <div className="text-center py-8 bg-surface rounded-xl neon-border">
+          <WalletIcon className="h-10 w-10 mx-auto text-gray-500 mb-3" />
+          <p className="text-gray-400 mb-4">You don't own any assets yet</p>
+          <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
+            Start Trading
+          </Button>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          <div className="flex justify-between items-center px-1">
+            <h3 className="font-medium text-sm">Your Assets</h3>
+            <Badge variant="outline" className="text-xs">
+              {holdings.length} {holdings.length === 1 ? 'asset' : 'assets'}
+            </Badge>
+          </div>
+          
+          {holdings.map((holding) => {
+            if (!holding.crypto) return null;
+            
+            const value = holding.amount * holding.crypto.currentPrice / 100;
+            const isPositive = holding.crypto.change24h > 0;
+            
+            return (
+              <motion.div
+                key={holding.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="neon-border rounded-xl bg-surface p-4"
+              >
+                <div className="flex justify-between items-start">
+                  <div className="flex items-center">
+                    <div className={`w-10 h-10 rounded-full bg-${isPositive ? 'primary' : 'secondary'}/20 flex items-center justify-center mr-3`}>
+                      <i className={holding.crypto.iconClass + (isPositive ? ' text-primary' : ' text-secondary')}></i>
+                    </div>
+                    <div>
+                      <div className="flex items-center">
+                        <h3 className="font-medium mr-2">{holding.crypto.symbol}</h3>
+                        <Badge variant={isPositive ? "default" : "secondary"} className="text-xs">
+                          {isPositive ? '+' : ''}{(holding.crypto.change24h / 100).toFixed(1)}%
+                        </Badge>
+                      </div>
+                      <div className="text-sm text-gray-400">
+                        {holding.amount} {holding.crypto.symbol} ≈ ${value.toFixed(2)}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="h-8 w-8"
+                    onClick={() => tradeCrypto(holding.crypto!)}
+                  >
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Button>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Trade: React.FC = () => {
   const { cryptos, trade, isTrading, selectedCrypto, tradeCrypto, resetSelectedCrypto } = useCrypto();
@@ -189,20 +346,20 @@ const Trade: React.FC = () => {
           </TabsContent>
           
           <TabsContent value="portfolio">
-            <Card className="bg-surface border-none">
-              <CardContent className="pt-6">
-                <div className="text-center py-10">
-                  <div className="text-4xl font-bold neon-text-primary mb-2">$8,245.36</div>
-                  <p className="text-gray-400">Your portfolio value</p>
-                  
-                  <div className="mt-8">
+            {user ? (
+              <PortfolioView userId={user.id} />
+            ) : (
+              <Card className="bg-surface border-none">
+                <CardContent className="pt-6">
+                  <div className="text-center py-10">
+                    <p className="text-gray-400 mb-4">Please log in to view your portfolio</p>
                     <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
-                      View Holdings
+                      Login
                     </Button>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            )}
           </TabsContent>
           
           <TabsContent value="watchlist">
