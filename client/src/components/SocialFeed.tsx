@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSocial } from "@/hooks/useSocial";
 import { useUser } from "@/hooks/useUser";
-import { HeartIcon, MessageCircleIcon, ShareIcon } from "lucide-react";
+import { HeartIcon, MessageCircleIcon, ShareIcon, ImageIcon, XIcon, TrendingUpIcon, SendIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 
 const SocialFeed: React.FC = () => {

@@ -59,8 +59,8 @@ interface UserStore {
   connect: () => void;
 }
 
-export const useUserStore = create<UserStore>(
-  persist(
+export const useUserStore = create(
+  persist<UserStore>(
     (set, get) => ({
       user: null,
       socket: null,

@@ -12,13 +12,13 @@ const MarketSection: React.FC = () => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-rajdhani font-bold text-xl">Trading Market</h2>
         <Link href="/trade">
-          <motion.a
+          <motion.div
             whileHover={{ x: 3 }}
-            className="text-primary text-sm flex items-center"
+            className="text-primary text-sm flex items-center cursor-pointer"
           >
             See all
             <ArrowRightIcon className="ml-1 h-4 w-4" />
-          </motion.a>
+          </motion.div>
         </Link>
       </div>
       
