@@ -5,32 +5,35 @@
 @tailwind utilities;
 
 :root {
-  --background: 240 10% 3.9%;
+  /* New color palette based on the requested colors:
+     #0A2E36 (dark teal), #27FB6B (bright green), #14CC60 (medium green),
+     #036D19 (dark green), #09A129 (forest green) */
+  --background: 187 71% 13%; /* #0A2E36 */
   --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
+  --card: 187 71% 13%; /* #0A2E36 */
   --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
+  --popover: 187 71% 13%; /* #0A2E36 */
   --popover-foreground: 0 0% 98%;
-  --primary: 186 100% 50%;
-  --primary-foreground: 211 100% 99%;
-  --secondary: 272 100% 64%;
+  --primary: 139 95% 57%; /* #27FB6B */
+  --primary-foreground: 187 71% 13%; /* #0A2E36 */
+  --secondary: 145 81% 44%; /* #14CC60 */
   --secondary-foreground: 0 0% 98%;
-  --accent: 158 92% 51%;
+  --accent: 142 94% 22%; /* #036D19 */
   --accent-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
+  --muted: 187 35% 20%;
+  --muted-foreground: 187 15% 65%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
+  --border: 142 74% 33%; /* #09A129 */
+  --input: 187 35% 20%;
+  --ring: 139 95% 57%; /* #27FB6B */
   
-  --success: 158 92% 51%;
+  --success: 145 81% 44%; /* #14CC60 */
   --warning: 39 84% 70%;
   --error: 0 84% 65%;
   
-  --surface: 222 20% 11%;
-  --surface-light: 223 14% 16%;
+  --surface: 187 50% 18%;
+  --surface-light: 187 30% 25%;
   
   --sidebar-background: var(--background);
   --sidebar-foreground: var(--foreground);
@@ -41,11 +44,11 @@
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
   
-  --chart-1: 186 100% 50%;
-  --chart-2: 272 100% 64%;
-  --chart-3: 158 92% 51%;
-  --chart-4: 39 84% 70%;
-  --chart-5: 0 84% 65%;
+  --chart-1: 139 95% 57%; /* #27FB6B */
+  --chart-2: 145 81% 44%; /* #14CC60 */
+  --chart-3: 142 74% 33%; /* #09A129 */
+  --chart-4: 142 94% 22%; /* #036D19 */
+  --chart-5: 187 71% 13%; /* #0A2E36 */
   
   --radius: 0.5rem;
 }
@@ -88,17 +91,17 @@
   
   .neon-text-primary {
     @apply text-primary;
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.7);
+    text-shadow: 0 0 10px rgba(39, 251, 107, 0.8);
   }
   
   .neon-text-secondary {
     @apply text-secondary;
-    text-shadow: 0 0 10px rgba(153, 69, 255, 0.7);
+    text-shadow: 0 0 10px rgba(20, 204, 96, 0.8);
   }
   
   .neon-text-accent {
     @apply text-accent;
-    text-shadow: 0 0 10px rgba(20, 241, 149, 0.7);
+    text-shadow: 0 0 10px rgba(3, 109, 25, 0.8);
   }
   
   .font-rajdhani {
@@ -124,7 +127,7 @@
   stroke: hsl(var(--primary));
   stroke-width: 2;
   fill: none;
-  filter: drop-shadow(0 0 3px rgba(0, 242, 255, 0.7));
+  filter: drop-shadow(0 0 3px rgba(39, 251, 107, 0.7));
 }
 
 .chart-area {
@@ -134,7 +137,7 @@
 
 .chart-dot {
   fill: hsl(var(--primary));
-  filter: drop-shadow(0 0 3px rgba(0, 242, 255, 0.7));
+  filter: drop-shadow(0 0 3px rgba(39, 251, 107, 0.7));
 }
 
 /* Mining animation */

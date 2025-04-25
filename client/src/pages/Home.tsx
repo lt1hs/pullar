@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import TopBar from "@/components/TopBar";
 import BottomNav from "@/components/BottomNav";
 import DashboardSummary from "@/components/DashboardSummary";
@@ -8,9 +9,31 @@ import MarketSection from "@/components/MarketSection";
 import SocialFeed from "@/components/SocialFeed";
 import TradingBot from "@/components/TradingBot";
 import Achievements from "@/components/Achievements";
+import DailyTasks from "@/components/DailyTasks";
+import Wallet from "@/components/Wallet";
 import { useUser } from "@/hooks/useUser";
 import { useToast } from "@/hooks/use-toast";
 import { Spinner } from "@/components/ui/spinner";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardFooter, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
+import { 
+  BarChart4, 
+  Wallet as WalletIcon, 
+  UserCircle, 
+  Settings, 
+  MessageCircle, 
+  TrendingUp, 
+  CheckCircle, 
+  Bot,
+  LayoutGrid
+} from "lucide-react";
 
 const Home: React.FC = () => {
   const { user, isLoading, achievements, challenges, userTradingBots, toggleTradingBot } = useUser();
