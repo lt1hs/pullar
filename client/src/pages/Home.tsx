@@ -15,6 +15,7 @@ import { useUser } from "@/hooks/useUser";
 import { useToast } from "@/hooks/use-toast";
 import { Spinner } from "@/components/ui/spinner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
 import { 
   Card, 
   CardContent, 
@@ -32,7 +33,8 @@ import {
   TrendingUp, 
   CheckCircle, 
   Bot,
-  LayoutGrid
+  LayoutGrid,
+  ChevronRight
 } from "lucide-react";
 
 const Home: React.FC = () => {
@@ -165,10 +167,11 @@ const Home: React.FC = () => {
           {/* Dashboard Tab - Shows original components */}
           <TabsContent value="dashboard">
             <DashboardSummary />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {/* Temporarily commented until components are fully functional */}
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <DailyTasks />
               <Wallet />
-            </div>
+            </div> */}
             <MiningSection />
             <MarketSection />
             <SocialFeed />
@@ -248,7 +251,7 @@ const Home: React.FC = () => {
           {/* Widgets Tab - Shows customizable widgets */}
           <TabsContent value="widgets">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <DailyTasks />
+              {/* <DailyTasks /> */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}

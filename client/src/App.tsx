@@ -7,6 +7,8 @@ import Trade from "@/pages/Trade";
 import Profile from "@/pages/Profile";
 import Settings from "@/pages/Settings";
 import BotSettings from "@/pages/BotSettings";
+import Mining from "@/pages/Mining";
+import Social from "@/pages/Social";
 import { useState, useEffect } from "react";
 import { useUser, useUserStore } from "./hooks/useUser";
 import { motion, AnimatePresence } from "framer-motion";
@@ -62,6 +64,8 @@ function Router() {
       <Route path="/profile" component={Profile} />
       <Route path="/settings" component={Settings} />
       <Route path="/bots" component={BotSettings} />
+      <Route path="/mining" component={Mining} />
+      <Route path="/social" component={Social} />
       <Route component={NotFound} />
     </Switch>
   );
