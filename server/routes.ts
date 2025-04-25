@@ -652,14 +652,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/posts/:id/like', async (req: Request, res: Response) => {
     try {
       const postId = parseInt(req.params.id);
+      const { emoji } = req.body;
       const post = await storage.getPost(postId);
       
       if (!post) {
         return res.status(404).json({ message: 'Post not found' });
       }
       
-      const updatedPost = await storage.updatePost(postId, {
-        likes: post.likes + 1
+      // Initialize reactions if needed
+      const reactions = post.reactions || {};
+      
+      if (emoji) {
+        // If emoji is specified, increment that specific reaction
+        reactions[emoji] = (reactions[emoji] || 0) + 1;
+      }
+      
+      const updatedPost = await storage.updatePost(postId, { 
+        likes: post.likes + 1,
+        reactions
       });
       
       // Broadcast update to all connected users
@@ -674,6 +684,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(updatedPost);
     } catch (error) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+  
+  // Add comment to a post
+  app.post('/api/posts/:id/comments', async (req: Request, res: Response) => {
+    try {
+      const postId = parseInt(req.params.id);
+      const { userId, content } = req.body;
+      
+      if (!content || !userId) {
+        return res.status(400).json({ message: 'Missing required fields' });
+      }
+      
+      const post = await storage.getPost(postId);
+      if (!post) {
+        return res.status(404).json({ message: 'Post not found' });
+      }
+      
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      
+      // Create a comment object
+      const now = new Date().toISOString();
+      const comment = {
+        id: Math.floor(Math.random() * 10000),
+        postId,
+        userId,
+        content,
+        createdAt: now,
+        user: {
+          id: user.id,
+          username: user.username,
+          profileImageUrl: user.profileImageUrl
+        }
+      };
+      
+      // Update post's comments count and add to comments list
+      const commentsList = post.commentsList || [];
+      commentsList.push(comment);
+      
+      const updatedPost = await storage.updatePost(postId, {
+        comments: post.comments + 1,
+        commentsList
+      });
+      
+      // Broadcast update to all connected users
+      for (const [userId, connection] of userConnections.entries()) {
+        if (connection.readyState === WebSocket.OPEN) {
+          connection.send(JSON.stringify({
+            type: 'post_update',
+            post: updatedPost
+          }));
+        }
+      }
+      
+      res.status(201).json(comment);
+    } catch (error) {
+      console.error('Error adding comment:', error);
       res.status(500).json({ message: 'Server error' });
     }
   });

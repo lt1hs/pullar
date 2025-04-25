@@ -56,7 +56,7 @@ const EmojiPicker = ({ onEmojiSelect }: { onEmojiSelect: (emoji: string) => void
 };
 
 // Comment component
-const Comment = ({ comment }: { comment: Comment }) => {
+const Comment = ({ comment }: { comment: CommentType }) => {
   return (
     <div className="flex items-start mb-3 pl-10">
       <div className="w-8 h-8 rounded-full overflow-hidden mr-2 bg-surface-light flex items-center justify-center text-primary border border-primary/30 flex-shrink-0">
@@ -144,7 +144,7 @@ const SocialFeed: React.FC = () => {
     
     try {
       // In a real app, we'd upload the image and get the URL
-      const imageUrl = postImagePreview ? "https://example.com/demo-image.jpg" : null;
+      const imageUrl = postImagePreview ? "https://example.com/demo-image.jpg" : undefined;
       
       await createPost({
         userId: user.id,
@@ -307,7 +307,7 @@ const SocialFeed: React.FC = () => {
                     </motion.button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
-                    <EmojiPicker onEmojiSelect={(emoji) => likePost(post.id, emoji)} />
+                    <EmojiPicker onEmojiSelect={(emoji) => likePost({ postId: post.id, emoji })} />
                   </PopoverContent>
                 </Popover>
                 
