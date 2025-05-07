@@ -36,7 +36,8 @@ app.use((req, res, next) => {
   next();
 });
 
-(async () => {
+// Create and configure server
+const createServer = async () => {
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -56,11 +57,19 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = process.env.PORT || 3000;
-  server.listen(port, () => {
-    log(`serving on port ${port}`);
-  });
-})();
+  return server;
+};
+
+// Start the server if this file is run directly
+if (process.env.NODE_ENV !== 'test') {
+  (async () => {
+    const server = await createServer();
+    const port = process.env.PORT || 3000;
+    server.listen(port, () => {
+      log(`serving on port ${port}`);
+    });
+  })();
+}
+
+// Export for Vercel serverless function
+export default app;
