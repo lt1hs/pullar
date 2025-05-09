@@ -12,6 +12,7 @@ import Social from "@/pages/Social";
 import Miners from "@/pages/Miners";
 import Clans from "@/pages/Clans";
 import Games from "@/pages/Games";
+import Wallet from "@/pages/Wallet";
 import { useState, useEffect } from "react";
 import { useUser, useUserStore } from "./hooks/useUser";
 import { useLanguage } from "@/context/LanguageContext";
@@ -73,6 +74,7 @@ function Router() {
       <Route path="/bots" component={BotSettings} />
       <Route path="/mining" component={Mining} />
       <Route path="/social" component={Social} />
+      <Route path="/wallet" component={Wallet} />
       <Route component={NotFound} />
     </Switch>
   );

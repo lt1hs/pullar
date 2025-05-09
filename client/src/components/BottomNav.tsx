@@ -3,13 +3,16 @@ import { useLocation, Link } from "wouter";
 import { motion } from "framer-motion";
 import { 
   HomeIcon, 
-  UserIcon, 
-  SettingsIcon, 
+  Wallet,
+  Activity,
+  LayoutGrid,
   PlusIcon,
   MinusIcon,
   Gamepad2Icon,
-  HardDriveIcon,
-  UsersIcon
+  Zap,
+  Users,
+  Settings,
+  MessageCircle
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -20,18 +23,18 @@ const BottomNav: React.FC = () => {
   
   const mainLinks = [
     { path: "/", label: t('nav.home'), icon: HomeIcon },
-    { path: "/miners", label: t('nav.miners'), icon: HardDriveIcon },
+    { path: "/wallet", label: t('nav.wallet'), icon: Wallet },
     { path: "", label: "", icon: showMore ? MinusIcon : PlusIcon },
-    { path: "/clans", label: t('nav.clans'), icon: UsersIcon },
-    { path: "/games", label: t('nav.games'), icon: Gamepad2Icon },
+    { path: "/mining", label: t('nav.mining'), icon: Zap },
+    { path: "/social", label: t('nav.social'), icon: MessageCircle },
   ];
   
   const moreLinks = [
-    { path: "/mining", label: t('nav.mining'), icon: HardDriveIcon },
-    { path: "/bots", label: t('nav.bots'), icon: Gamepad2Icon },
-    { path: "/social", label: t('nav.social'), icon: UsersIcon },
-    { path: "/profile", label: t('nav.profile'), icon: UserIcon },
-    { path: "/settings", label: t('nav.settings'), icon: SettingsIcon },
+    { path: "/clans", label: t('nav.clans'), icon: Users },
+    { path: "/games", label: t('nav.games'), icon: Gamepad2Icon },
+    { path: "/bots", label: t('nav.bots'), icon: Activity },
+    { path: "/profile", label: t('nav.profile'), icon: Users },
+    { path: "/settings", label: t('nav.settings'), icon: Settings },
   ];
   
   return (
@@ -63,22 +66,22 @@ const BottomNav: React.FC = () => {
             
             return (
               <Link key={index} href={link.path}>
-                <a className="flex flex-col items-center">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+                <motion.a 
+                  className="flex flex-col items-center"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div
                     className={`w-10 h-10 rounded-full ${
-                      isActive ? "bg-primary/10" : "bg-surface-light"
-                    } flex items-center justify-center mb-1 ${
-                      isActive ? "text-primary" : ""
-                    }`}
+                      isActive ? "bg-primary/20 text-primary" : "bg-surface-light"
+                    } flex items-center justify-center mb-1`}
                   >
                     <link.icon className="h-5 w-5" />
-                  </motion.div>
-                  <span className={`text-xs ${isActive ? "neon-text-primary" : ""}`}>
+                  </div>
+                  <span className={`text-xs ${isActive ? "neon-text-primary font-medium" : ""}`}>
                     {link.label}
                   </span>
-                </a>
+                </motion.a>
               </Link>
             );
           })}
@@ -100,22 +103,23 @@ const BottomNav: React.FC = () => {
                 
                 return (
                   <Link key={index} href={link.path}>
-                    <a className="flex flex-col items-center p-2" onClick={() => setShowMore(false)}>
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                    <motion.a 
+                      className="flex flex-col items-center p-2" 
+                      onClick={() => setShowMore(false)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <div
                         className={`w-10 h-10 rounded-full ${
-                          isActive ? "bg-primary/10" : "bg-surface-light"
-                        } flex items-center justify-center mb-1 ${
-                          isActive ? "text-primary" : ""
-                        }`}
+                          isActive ? "bg-primary/20 text-primary" : "bg-surface-light"
+                        } flex items-center justify-center mb-1`}
                       >
                         <link.icon className="h-5 w-5" />
-                      </motion.div>
-                      <span className={`text-xs ${isActive ? "neon-text-primary" : ""}`}>
+                      </div>
+                      <span className={`text-xs ${isActive ? "neon-text-primary font-medium" : ""}`}>
                         {link.label}
                       </span>
-                    </a>
+                    </motion.a>
                   </Link>
                 );
               })}
