@@ -3,20 +3,23 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/context/LanguageContext";
 import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
-import Profile from "@/pages/Profile";
-import Settings from "@/pages/Settings";
-import BotSettings from "@/pages/BotSettings";
-import Mining from "@/pages/Mining";
-import Social from "@/pages/Social";
-import Miners from "@/pages/Miners";
-import Clans from "@/pages/Clans";
-import Games from "@/pages/Games";
-import Wallet from "@/pages/Wallet";
-import { useState, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { useUser, useUserStore } from "./hooks/useUser";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
+
+// Lazy loading all the pages
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Wallet = lazy(() => import("./pages/Wallet"));
+const Games = lazy(() => import("./pages/Games"));
+const Mining = lazy(() => import("./pages/Mining"));
+const Social = lazy(() => import("./pages/Social"));
+const BotSettings = lazy(() => import("./pages/BotSettings"));
+const TradingBots = lazy(() => import("./pages/TradingBots"));
+const Store = lazy(() => import("./pages/Store"));
 
 function Router() {
   const { user, login } = useUser();
@@ -64,19 +67,23 @@ function Router() {
   }
   
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/miners" component={Miners} />
-      <Route path="/clans" component={Clans} />
-      <Route path="/games" component={Games} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/settings" component={Settings} />
-      <Route path="/bots" component={BotSettings} />
-      <Route path="/mining" component={Mining} />
-      <Route path="/social" component={Social} />
-      <Route path="/wallet" component={Wallet} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/miners" component={Miners} />
+        <Route path="/clans" component={Clans} />
+        <Route path="/games" component={Games} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/settings" component={Settings} />
+        <Route path="/bot-settings" component={BotSettings} />
+        <Route path="/trading-bots" component={TradingBots} />
+        <Route path="/store" component={Store} />
+        <Route path="/mining" component={Mining} />
+        <Route path="/social" component={Social} />
+        <Route path="/wallet" component={Wallet} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 

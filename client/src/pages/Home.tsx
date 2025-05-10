@@ -28,7 +28,9 @@ import {
   ChevronLeft,
   Activity,
   ShoppingBag,
-  Newspaper
+  Newspaper,
+  UsersIcon,
+  ShoppingBagIcon
 } from "lucide-react";
 
 // Widget components
