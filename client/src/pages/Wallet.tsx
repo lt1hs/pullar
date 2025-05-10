@@ -567,7 +567,7 @@ const Wallet: React.FC = () => {
       // In a real app, this would use the Web Authentication API or a native plugin
       // Simulating authentication success after delay
       await new Promise(resolve => setTimeout(resolve, 1500));
-      toast({
+    toast({
         title: "Authentication successful",
         description: "Biometric authentication completed"
       });
@@ -597,7 +597,7 @@ const Wallet: React.FC = () => {
           ...prev,
           biometricEnabled: true
         }));
-        toast({
+    toast({
           title: "Biometric authentication enabled",
           description: "You can now use your fingerprint or face to authorize transactions"
         });
@@ -724,33 +724,33 @@ const Wallet: React.FC = () => {
       
       <main className="mt-16 px-4 py-6 max-w-5xl mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <div>
+              <div>
             <h1 className="font-rajdhani font-bold text-3xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Wallet</h1>
             <p className="text-muted-foreground text-sm">Manage your digital assets and transactions</p>
-          </div>
-          
+            </div>
+            
           <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
+              <Button 
+                variant="outline" 
               size="icon"
               className="h-10 w-10 rounded-full"
-              onClick={handleRefresh}
-              disabled={isRefreshing}
-            >
+                onClick={handleRefresh}
+                disabled={isRefreshing}
+              >
               <RefreshCwIcon className={`h-5 w-5 ${isRefreshing ? 'animate-spin' : ''}`} />
-            </Button>
-            
-            <Button
-              variant="outline"
+              </Button>
+              
+              <Button 
+                variant="outline" 
               size="icon"
               className="h-10 w-10 rounded-full"
               onClick={() => setShowBalances(!showBalances)}
-            >
+              >
               {showBalances ? <EyeOffIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
-            </Button>
+              </Button>
             
             <Button
-              variant="outline"
+            variant="outline"
               size="icon"
               className="h-10 w-10 rounded-full"
               onClick={() => setShowSecurityModal(true)}
@@ -865,7 +865,7 @@ const Wallet: React.FC = () => {
                   <CardTitle className="text-lg">Recent Activity</CardTitle>
                   <CardDescription>Your latest transactions</CardDescription>
                 </div>
-                <Button
+                <Button 
                   variant="ghost"
                   size="sm"
                   onClick={() => setActiveTab("transactions")}
@@ -891,7 +891,7 @@ const Wallet: React.FC = () => {
                           {tx.type === 'swap' && <SwapIcon className="h-5 w-5" />}
                           {tx.type === 'stake' && <LockIcon className="h-5 w-5" />}
                           {tx.type === 'unstake' && <UnlockIcon className="h-5 w-5" />}
-                        </div>
+              </div>
                         <div>
                           <p className="font-medium text-sm">
                             {tx.type === 'send' ? `Sent to ${tx.recipientName || tx.recipient?.substring(0, 8) + '...'}` :
@@ -954,7 +954,7 @@ const Wallet: React.FC = () => {
                           ) : (
                             <WalletIcon className="h-5 w-5 text-primary" />
                           )}
-                        </div>
+                </div>
                         <div>
                           <p className="font-medium">{asset.name}</p>
                           <p className="text-xs text-muted-foreground">
@@ -1038,8 +1038,8 @@ const Wallet: React.FC = () => {
                                 ) : (
                                   <WalletIcon className="h-5 w-5 text-primary" />
                                 )}
-                              </div>
-                              <div>
+                          </div>
+                          <div>
                                 <p className="font-medium">{asset.name}</p>
                                 <p className="text-xs text-muted-foreground">
                                   {showBalances ? asset.balance.toLocaleString() : '••••'} {asset.symbol}
@@ -1162,13 +1162,13 @@ const Wallet: React.FC = () => {
                               text-xs px-1.5 py-0 h-5
                             `}>
                               {nft.rarity.charAt(0).toUpperCase() + nft.rarity.slice(1)}
-                            </Badge>
-                          </div>
+                              </Badge>
+                            </div>
                           <p className="text-xs text-muted-foreground truncate">{nft.collection}</p>
-                        </div>
-                      </div>
+                            </div>
+                          </div>
                     ))}
-                  </div>
+                        </div>
                 )}
               </CardContent>
             </Card>
@@ -1464,11 +1464,11 @@ const Wallet: React.FC = () => {
                         <span>
                           Balance: {assets.find(a => a.symbol === swapForm.fromAsset)?.balance.toLocaleString() || 0} {swapForm.fromAsset}
                         </span>
-                        <Button 
-                          variant="ghost" 
+                          <Button 
+                            variant="ghost" 
                           size="sm" 
                           className="h-6 text-xs"
-                          onClick={() => {
+                            onClick={() => {
                             const asset = assets.find(a => a.symbol === swapForm.fromAsset);
                             if (asset) {
                               setSwapForm({ ...swapForm, amount: asset.balance.toString() });
@@ -1476,17 +1476,17 @@ const Wallet: React.FC = () => {
                           }}
                         >
                           Max
-                        </Button>
+                          </Button>
                       </div>
                     </div>
                     
                     {/* Swap Direction */}
                     <div className="flex justify-center">
-                      <Button
+                          <Button 
                         variant="outline"
-                        size="icon"
+                            size="icon"
                         className="h-8 w-8 rounded-full"
-                        onClick={() => {
+                            onClick={() => {
                           setSwapForm({
                             ...swapForm,
                             fromAsset: swapForm.toAsset,
@@ -1496,8 +1496,8 @@ const Wallet: React.FC = () => {
                         }}
                       >
                         <SwapIcon className="h-4 w-4" />
-                      </Button>
-                    </div>
+                          </Button>
+                        </div>
                     
                     {/* To Asset */}
                     <div className="space-y-2">
@@ -1519,7 +1519,7 @@ const Wallet: React.FC = () => {
                                       ) : (
                                         <WalletIcon className="h-3 w-3 text-primary" />
                                       )}
-                                    </div>
+                      </div>
                                     <span>{asset.symbol}</span>
                                   </div>
                                 </SelectItem>
@@ -1610,8 +1610,8 @@ const Wallet: React.FC = () => {
                             <span className="text-muted-foreground">Exchange Fee (0.3%)</span>
                             <span>~$1.85</span>
                           </div>
-                        </div>
-                      )}
+              </div>
+            )}
                     </div>
                     
                     {/* Submit Button */}
@@ -1644,8 +1644,8 @@ const Wallet: React.FC = () => {
                       Exchange Rates
                     </CardTitle>
                     <CardDescription>Current market rates</CardDescription>
-                  </CardHeader>
-                  <CardContent>
+              </CardHeader>
+              <CardContent>
                     <div className="space-y-3">
                       {[
                         { from: "ETH", to: "GCC", rate: 10000, change: 1.2 },
@@ -1654,29 +1654,29 @@ const Wallet: React.FC = () => {
                       ].map((item, index) => (
                         <div key={index} className="flex justify-between items-center p-3 bg-surface-light rounded-lg">
                           <div className="flex items-center gap-2">
-                            <div className="flex items-center">
+                      <div className="flex items-center">
                               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center z-10">
                                 <span className="text-sm font-medium">{item.from}</span>
                               </div>
                               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center -ml-2 z-0">
                                 <span className="text-sm font-medium">{item.to}</span>
                               </div>
-                            </div>
-                            <div>
+                        </div>
+                        <div>
                               <p className="text-sm font-medium">
                                 1 {item.from} = {item.rate} {item.to}
                               </p>
                               <p className={`text-xs ${item.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
                                 {item.change >= 0 ? '+' : ''}{item.change}% (24h)
                               </p>
-                            </div>
-                          </div>
+                        </div>
+                      </div>
                           <Button variant="outline" size="sm" className="h-8 text-xs">
                             Swap
                           </Button>
                         </div>
                       ))}
-                    </div>
+                      </div>
                   </CardContent>
                 </Card>
                 
@@ -1736,12 +1736,12 @@ const Wallet: React.FC = () => {
                                 ));
                               }}
                             />
-                          </div>
-                        ))}
-                      </div>
+                    </div>
+                  ))}
+                </div>
                     )}
-                  </CardContent>
-                </Card>
+              </CardContent>
+            </Card>
               </div>
             </div>
           </TabsContent>
@@ -1752,7 +1752,7 @@ const Wallet: React.FC = () => {
       </main>
       
       <BottomNav />
-
+      
       {/* QR Scanner Modal */}
       <Dialog open={showQrScannerModal} onOpenChange={setShowQrScannerModal}>
         <DialogContent className="sm:max-w-md">
@@ -1794,8 +1794,8 @@ const Wallet: React.FC = () => {
                       <span className="font-medium truncate">{transactionToConfirm.recipient}</span>
                     </>
                   )}
+                  </div>
                 </div>
-              </div>
             )}
             
             {securitySettings.biometricEnabled && (
@@ -1823,13 +1823,13 @@ const Wallet: React.FC = () => {
                     ? "Verifying..." 
                     : "Use your fingerprint or face to authenticate"}
                 </p>
-              </div>
+            </div>
             )}
             
             {!securitySettings.biometricEnabled && (
               <div className="mb-6 w-full">
                 <Label htmlFor="pin" className="mb-2 block">Enter PIN Code</Label>
-                <Input 
+            <Input
                   id="pin"
                   type="password" 
                   value={pinCode} 
@@ -1855,8 +1855,8 @@ const Wallet: React.FC = () => {
                 Confirm
               </Button>
             )}
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={() => {
                 setConfirmingTransaction(false);
                 setTransactionToConfirm(null);
@@ -1971,7 +1971,7 @@ const Wallet: React.FC = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-
+      
       {/* Price Alerts Modal */}
       <Dialog open={showAlertsModal} onOpenChange={setShowAlertsModal}>
         <DialogContent className="sm:max-w-md">
@@ -2009,10 +2009,10 @@ const Wallet: React.FC = () => {
                       >
                         <VolumeXIcon className="h-4 w-4 text-muted-foreground" />
                       </Button>
-                    </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
+            </div>
             ) : (
               <div className="bg-surface-light rounded-lg p-4 text-center">
                 <BellIcon className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
@@ -2061,22 +2061,22 @@ const Wallet: React.FC = () => {
                 
                 <div>
                   <Label htmlFor="alert-price" className="text-xs mb-1 block">Target Price ($)</Label>
-                  <Input
+            <Input
                     id="alert-price"
-                    type="number"
+              type="number"
                     value={newAlert.targetPrice}
                     onChange={(e) => setNewAlert(prev => ({ ...prev, targetPrice: e.target.value }))}
-                    placeholder="0.00"
+              placeholder="0.00"
                     className="bg-surface-light"
                   />
                 </div>
+                </div>
               </div>
-            </div>
           </div>
           
           <DialogFooter className="flex-col sm:flex-row gap-2">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={() => setShowAlertsModal(false)}
               className="sm:order-first order-last"
             >
@@ -2088,7 +2088,7 @@ const Wallet: React.FC = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-
+      
       {/* Send Modal */}
       <Dialog open={showSendModal} onOpenChange={setShowSendModal}>
         <DialogContent className="sm:max-w-md">
@@ -2145,13 +2145,13 @@ const Wallet: React.FC = () => {
                           ) : (
                             <WalletIcon className="h-3 w-3 text-primary" />
                           )}
-                        </div>
+                  </div>
                         <span>
                           {asset.symbol} • {showBalances ? asset.balance.toLocaleString() : '••••'}
                         </span>
-                      </div>
+                </div>
                     </SelectItem>
-                  ))}
+              ))}
                 </SelectContent>
               </Select>
             </div>
@@ -2174,10 +2174,10 @@ const Wallet: React.FC = () => {
                 </Button>
               </div>
               <div className="flex gap-2">
-                <Input
+            <Input
                   id="amount"
                   className="bg-surface-light"
-                  placeholder="0.00"
+              placeholder="0.00"
                   type="number"
                   value={sendForm.amount}
                   onChange={(e) => setSendForm({ ...sendForm, amount: e.target.value })}
@@ -2224,7 +2224,7 @@ const Wallet: React.FC = () => {
             </div>
           </div>
           <DialogFooter>
-            <Button
+              <Button 
               className="w-full bg-gradient-to-r from-primary to-secondary"
               disabled={
                 !sendForm.recipient ||
@@ -2232,7 +2232,7 @@ const Wallet: React.FC = () => {
                 parseFloat(sendForm.amount) <= 0 ||
                 parseFloat(sendForm.amount) > (assets.find(a => a.symbol === sendForm.asset)?.balance || 0)
               }
-              onClick={() => {
+                onClick={() => {
                 // Close the modal
                 setShowSendModal(false);
                 
@@ -2253,7 +2253,7 @@ const Wallet: React.FC = () => {
               }}
             >
               Review Transaction
-            </Button>
+              </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -2280,9 +2280,9 @@ const Wallet: React.FC = () => {
                         ) : (
                           <WalletIcon className="h-3 w-3 text-primary" />
                         )}
-                      </div>
+                  </div>
                       <span>{asset.symbol}</span>
-                    </div>
+                </div>
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -2313,11 +2313,11 @@ const Wallet: React.FC = () => {
                     <ExternalLinkIcon className="h-3.5 w-3.5" />
                   </Button>
                 </div>
-              </div>
+                </div>
               <p className="text-sm font-mono mt-1 break-all">
                 {walletAddress}
               </p>
-            </div>
+                </div>
             
             <Alert className="bg-warning/10 border-warning text-warning">
               <AlertTriangleIcon className="h-4 w-4" />
@@ -2326,7 +2326,7 @@ const Wallet: React.FC = () => {
                 Only send compatible assets to this address. Sending incompatible assets may result in permanent loss.
               </AlertDescription>
             </Alert>
-          </div>
+              </div>
           <DialogFooter>
             <Button className="w-full" variant="outline" onClick={() => {
               navigator.clipboard.writeText(walletAddress);
@@ -2358,8 +2358,8 @@ const Wallet: React.FC = () => {
                       <img src={selectedAsset.iconUrl} alt={selectedAsset.name} className="w-6 h-6" />
                     ) : (
                       <WalletIcon className="h-5 w-5 text-primary" />
-                    )}
-                  </div>
+            )}
+          </div>
                   <div>
                     <DialogTitle>{selectedAsset.name}</DialogTitle>
                     <DialogDescription>
@@ -2406,14 +2406,14 @@ const Wallet: React.FC = () => {
                   }}>
                     <SendIcon className="h-4 w-4 mr-2" />
                     Send
-                  </Button>
+            </Button>
                   <Button className="flex-1 bg-primary/90 hover:bg-primary text-white" onClick={() => {
                     setShowAssetDetailsModal(false);
                     setShowReceiveModal(true);
                   }}>
                     <ReceiveIcon className="h-4 w-4 mr-2" />
                     Receive
-                  </Button>
+            </Button>
                   {selectedAsset.isStakingAvailable && (
                     <Button className="flex-1 bg-primary/90 hover:bg-primary text-white" onClick={() => {
                       setStakeForm(prev => ({

@@ -491,11 +491,11 @@ const Social: React.FC = () => {
                       
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button 
-                            size="sm"
+                      <Button 
+                        size="sm"
                             disabled={!postContent.trim() || loading}
-                            className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
-                          >
+                        className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                      >
                             {loading ? (
                               <>
                                 <Loader2 className="h-4 w-4 mr-1.5 animate-spin" />
@@ -507,7 +507,7 @@ const Social: React.FC = () => {
                                 Post
                               </>
                             )}
-                          </Button>
+                      </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
                           <DropdownMenuItem onClick={handlePostSubmit}>
@@ -530,26 +530,26 @@ const Social: React.FC = () => {
             <div className="space-y-6">
               {samplePosts.map((post) => (
                 <Card key={post.id} className="bg-surface border-none neon-border shadow-glow overflow-hidden">
-                  <CardContent className="pt-6">
-                    <div className="flex gap-3 mb-3">
-                      <Avatar>
+              <CardContent className="pt-6">
+                <div className="flex gap-3 mb-3">
+                  <Avatar>
                         <AvatarFallback className="bg-primary/20 text-primary">
                           {post.user.username[0].toUpperCase()}
                         </AvatarFallback>
-                      </Avatar>
-                      
+                  </Avatar>
+                  
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center">
+                    <div className="flex items-center">
                             <span className="font-medium">{post.user.username}</span>
                             {post.user.verified && (
                               <Badge className="ml-1 h-5 px-1.5 bg-primary">
-                                <svg className="h-3 w-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
-                              </Badge>
+                        <svg className="h-3 w-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </Badge>
                             )}
-                          </div>
+                    </div>
                           
                           <div className="flex items-center gap-2">
                             <Badge variant="outline" className="bg-primary/5 px-2 py-0 h-5 border-primary/20">
@@ -558,9 +558,9 @@ const Social: React.FC = () => {
                             </Badge>
                             
                             <span className="text-xs text-muted-foreground">{post.timeAgo}</span>
-                          </div>
-                        </div>
-                        
+                  </div>
+                </div>
+                
                         <p className="mt-2 text-sm">{post.content}</p>
                         
                         {post.image && (
@@ -572,48 +572,48 @@ const Social: React.FC = () => {
                     </div>
                     
                     <div className="flex items-center justify-between mt-4">
-                      <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1">
                         <Badge className="bg-primary/10 text-primary border-none">
                           <Heart className="h-3 w-3 mr-1" />
                           {post.likes}
                         </Badge>
-                      </div>
-                      
-                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  </div>
+                  
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
                         <span>{post.comments} comments</span>
                         <span>{post.shares} shares</span>
-                      </div>
-                    </div>
-                    
+                  </div>
+                </div>
+                
                     <div className="flex mt-3 pt-3 border-t border-border/30">
-                      <Button
-                        variant="ghost"
-                        size="sm"
+                  <Button
+                    variant="ghost"
+                    size="sm"
                         className="flex-1 flex items-center justify-center hover:bg-primary/5 hover:text-primary"
                         onClick={() => handleLike(post.id)}
-                      >
-                        <Heart className="h-4 w-4 mr-2" />
-                        Like
-                      </Button>
-                      
-                      <Button
-                        variant="ghost"
-                        size="sm"
+                  >
+                    <Heart className="h-4 w-4 mr-2" />
+                    Like
+                  </Button>
+                  
+                  <Button
+                    variant="ghost"
+                    size="sm"
                         className="flex-1 flex items-center justify-center hover:bg-primary/5 hover:text-primary"
-                      >
-                        <MessageCircle className="h-4 w-4 mr-2" />
-                        Comment
-                      </Button>
-                      
-                      <Button
-                        variant="ghost"
-                        size="sm"
+                  >
+                    <MessageCircle className="h-4 w-4 mr-2" />
+                    Comment
+                  </Button>
+                  
+                  <Button
+                    variant="ghost"
+                    size="sm"
                         className="flex-1 flex items-center justify-center hover:bg-primary/5 hover:text-primary"
                         onClick={() => handleShare(post.id)}
-                      >
-                        <Share className="h-4 w-4 mr-2" />
-                        Share
-                      </Button>
+                  >
+                    <Share className="h-4 w-4 mr-2" />
+                    Share
+                  </Button>
                       
                       <Button
                         variant="ghost"
@@ -622,10 +622,10 @@ const Social: React.FC = () => {
                       >
                         <Gift className="h-4 w-4 mr-2" />
                         Gift
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
               ))}
             </div>
           </TabsContent>
@@ -687,8 +687,8 @@ const Social: React.FC = () => {
                                   {post.user.username[0].toUpperCase()}
                                 </AvatarFallback>
                               </Avatar>
-                              <div>
-                                <div className="flex items-center">
+                  <div>
+                    <div className="flex items-center">
                                   <span className="font-medium text-sm">{post.user.username}</span>
                                   {post.user.verified && (
                                     <Badge className="ml-1 h-4 px-1 bg-primary">
@@ -697,11 +697,11 @@ const Social: React.FC = () => {
                                       </svg>
                                     </Badge>
                                   )}
-                                </div>
+                    </div>
                                 <div className="text-xs text-muted-foreground">{post.timeAgo}</div>
-                              </div>
-                            </div>
-                            
+                  </div>
+                </div>
+                
                             <Badge className="bg-primary/10 text-primary border-none">
                               <ThumbsUp className="h-3 w-3 mr-1" />
                               {post.likes + (index * 15)}
@@ -1166,14 +1166,14 @@ const Social: React.FC = () => {
                         <Badge className="mb-2 bg-primary/10 text-primary border-none">Upcoming Event</Badge>
                         <h4 className="font-medium text-sm">Weekly Trading Analysis</h4>
                         <p className="text-xs text-muted-foreground mb-2">Join expert traders for market insights</p>
-                        <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                           <span className="text-xs font-medium">Tomorrow, 2PM</span>
                           <Button size="sm" variant="outline" className="h-7 text-xs border-primary/30 text-primary">
                             Remind me
                           </Button>
                         </div>
-                      </div>
-                      
+                  </div>
+                  
                       <div className="p-3 bg-surface-light rounded-lg border border-border/20">
                         <Badge className="mb-2 bg-blue-500/10 text-blue-500 border-none">Poll</Badge>
                         <h4 className="font-medium text-sm">Which crypto will perform best in Q3?</h4>
@@ -1182,9 +1182,9 @@ const Social: React.FC = () => {
                             <div className="text-xs">Bitcoin</div>
                             <div className="flex-1">
                               <Progress value={45} className="h-1.5" />
-                            </div>
+                  </div>
                             <div className="text-xs font-medium">45%</div>
-                          </div>
+                </div>
                           <div className="flex items-center justify-between gap-3">
                             <div className="text-xs">Ethereum</div>
                             <div className="flex-1">
@@ -1376,9 +1376,9 @@ const Social: React.FC = () => {
                             </Badge>
                             <span className="text-xs text-muted-foreground">Started 45 min ago</span>
                           </div>
-                          <Button 
+                  <Button
                             className="bg-gradient-to-r from-primary to-secondary text-white shadow-glow"
-                            size="sm"
+                    size="sm"
                             onClick={() => handleJoinRoom({
                               name: "Trading Tactics",
                               description: "Advanced chart analysis and live trading",
@@ -1388,7 +1388,7 @@ const Social: React.FC = () => {
                             })}
                           >
                             Join Room
-                          </Button>
+                  </Button>
                         </div>
                       </div>
                       
@@ -1446,9 +1446,9 @@ const Social: React.FC = () => {
                             </Badge>
                             <span className="text-xs text-muted-foreground">Includes miner trading</span>
                           </div>
-                          <Button 
+                  <Button
                             className="bg-gradient-to-r from-primary to-secondary text-white shadow-glow"
-                            size="sm"
+                    size="sm"
                             onClick={() => handleJoinRoom({
                               name: "Mining Masterclass",
                               description: "Optimize your mining rigs for maximum efficiency",
@@ -1458,7 +1458,7 @@ const Social: React.FC = () => {
                             })}
                           >
                             Join Room
-                          </Button>
+                  </Button>
                         </div>
                       </div>
                       
@@ -1506,9 +1506,9 @@ const Social: React.FC = () => {
                             </Badge>
                             <span className="text-xs text-muted-foreground">Starts in 15 minutes</span>
                           </div>
-                          <Button 
+                  <Button
                             className="bg-gradient-to-r from-primary to-secondary text-white shadow-glow"
-                            size="sm"
+                    size="sm"
                             onClick={() => handleJoinRoom({
                               name: "Gaming Challenge",
                               description: "Win tokens in crypto trivia and mini-games",
@@ -1518,12 +1518,12 @@ const Social: React.FC = () => {
                             })}
                           >
                             Join Room
-                          </Button>
+                  </Button>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                </div>
+              </CardContent>
+            </Card>
                 
                 <Card className="bg-surface border-none neon-border shadow-glow">
                   <CardHeader className="pb-3 border-b border-border/30">
@@ -1580,7 +1580,7 @@ const Social: React.FC = () => {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+            </Card>
               </div>
               
               {/* Right Column - Room features and highlights */}
@@ -1643,7 +1643,7 @@ const Social: React.FC = () => {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+            </Card>
                 
                 <Card className="bg-surface border-none neon-border shadow-glow">
                   <CardHeader className="pb-3 border-b border-border/30">
@@ -1806,7 +1806,7 @@ const Social: React.FC = () => {
                       ))}
                     </div>
                   </CardContent>
-                </Card>
+            </Card>
                 
                 <Card className="bg-surface border-none neon-border shadow-glow">
                   <CardHeader className="pb-3 border-b border-border/30">

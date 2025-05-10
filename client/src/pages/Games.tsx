@@ -456,7 +456,7 @@ const Games: React.FC = () => {
       default: return 'text-slate-400';
     }
   };
-  
+
   // Prepare a new logo quiz round
   const prepareLogoRound = () => {
     const randomIndex = Math.floor(Math.random() * logoOptions.length);
@@ -594,11 +594,11 @@ const Games: React.FC = () => {
     // Update challenges progress
     // This would typically be handled by your state management system
     
-    toast({
-      title: t('games.rewards.earned'),
-      description: `${tokensEarned} ${t('games.tokens')}`,
-      variant: "default",
-    });
+      toast({
+        title: t('games.rewards.earned'),
+        description: `${tokensEarned} ${t('games.tokens')}`,
+        variant: "default",
+      });
   };
 
   // Exit current game
@@ -661,7 +661,7 @@ const Games: React.FC = () => {
       }
     };
   }, [timerInterval]);
-  
+
   // Main games dashboard view
   return (
     <div className="min-h-screen pb-20 bg-background" dir={dir()}>
@@ -700,8 +700,8 @@ const Games: React.FC = () => {
             </div>
             <span className="text-xs text-muted-foreground ml-2">{gameStats.rankProgress}%</span>
           </div>
-        </div>
-        
+                </div>
+                
         {/* Tabs Interface */}
         <Tabs defaultValue="games" value={activeTab} onValueChange={setActiveTab} className="space-y-4">
           <TabsList className="grid grid-cols-4 h-10">
@@ -759,12 +759,12 @@ const Games: React.FC = () => {
                       <div className="bg-background/25 backdrop-blur-sm p-2 rounded-lg text-center">
                         <p className="text-xs text-muted-foreground">Reward</p>
                         <p className="text-sm font-medium">{game.reward} {game.rewardType === 'game' ? 'GT' : 'CT'}</p>
-                      </div>
+                </div>
                       <div className="bg-background/25 backdrop-blur-sm p-2 rounded-lg text-center">
                         <p className="text-xs text-muted-foreground">Best Score</p>
                         <p className="text-sm font-medium">{gameStats.bestScore}</p>
-                      </div>
-                    </div>
+                </div>
+              </div>
                   </CardContent>
                   <CardFooter>
                     <Button className="w-full bg-gradient-to-r from-primary to-secondary">
@@ -780,7 +780,7 @@ const Games: React.FC = () => {
               {gamesList.filter(game => !game.featured).map((game, index) => (
                 <motion.div
                   key={game.id}
-                  initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0, transition: { delay: index * 0.1 } }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
@@ -843,7 +843,7 @@ const Games: React.FC = () => {
                         'bg-orange-500/20'
                       } ${getTierColor(challenge.tier)}`}>
                         {challenge.icon}
-                      </div>
+                        </div>
                       <div className="flex-1">
                         <div className="flex justify-between">
                           <CardTitle className="text-base">{challenge.title}</CardTitle>
@@ -868,7 +868,7 @@ const Games: React.FC = () => {
                             <span>{challenge.progress}/{challenge.total}</span>
                           </div>
                           <Progress value={(challenge.progress / challenge.total) * 100} className="h-1.5" />
-                        </div>
+                    </div>
                       )}
                       
                       {challenge.expires && (
@@ -885,8 +885,8 @@ const Games: React.FC = () => {
                           <span className="font-medium">{challenge.reward}</span>
                           <span className="text-xs text-muted-foreground ml-1">
                             {challenge.rewardType === 'game' ? 'Game Tokens' : 'Crypto Tokens'}
-                          </span>
-                        </div>
+                      </span>
+                    </div>
                         
                         <Button
                           size="sm"
@@ -970,27 +970,27 @@ const Games: React.FC = () => {
                         {entry.rank === 2 && <span className="text-slate-300">🥈</span>}
                         {entry.rank === 3 && <span className="text-amber-700">🥉</span>}
                         {entry.rank > 3 && <span className="text-muted-foreground">{entry.rank}</span>}
-                      </div>
-                      
+              </div>
+              
                       <div className="w-8 h-8 rounded-full bg-surface-light overflow-hidden flex items-center justify-center mr-3">
                         {entry.avatar ? (
                           <img src={entry.avatar} alt={entry.name} className="w-full h-full object-cover" />
                         ) : (
                           <UsersIcon className="h-4 w-4 text-muted-foreground" />
                         )}
-                      </div>
+              </div>
                       
                       <div className="flex-1">
                         <p className={`font-medium ${entry.isPlayer ? 'text-primary' : ''}`}>
                           {entry.name}
                         </p>
-                      </div>
-                      
+                    </div>
+                    
                       <div className="text-right">
                         <p className="font-bold">{entry.score}</p>
                         <p className="text-xs text-muted-foreground">points</p>
-                      </div>
-                    </motion.div>
+                  </div>
+                </motion.div>
                   ))}
                 </div>
               </CardContent>
@@ -1022,7 +1022,7 @@ const Games: React.FC = () => {
             
             <div className="grid grid-cols-2 gap-3">
               {storeItems.map((item) => (
-                <motion.div
+              <motion.div
                   key={item.id}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -1038,7 +1038,7 @@ const Games: React.FC = () => {
                     {item.limited && (
                       <div className="absolute left-2 top-2 bg-orange-500/80 text-white text-xs py-0.5 px-2 rounded-full">
                         Limited
-                      </div>
+                  </div>
                     )}
                     
                     <CardHeader className="p-3 text-center pb-0">
@@ -1049,7 +1049,7 @@ const Games: React.FC = () => {
                         'bg-orange-500/20'
                       } ${getTierColor(item.rarity)}`}>
                         {item.icon}
-                      </div>
+                  </div>
                       <CardTitle className="mt-2 text-base">{item.name}</CardTitle>
                     </CardHeader>
                     <CardContent className="p-3 pt-0 pb-2">
@@ -1063,8 +1063,8 @@ const Games: React.FC = () => {
                           <WalletIcon className="h-4 w-4 mr-1 text-primary" />
                         )}
                         <span className="font-medium">{item.price}</span>
-                      </div>
-                      
+                </div>
+                
                       <Button
                         size="sm"
                         variant={item.owned ? 'outline' : 'default'}
@@ -1075,9 +1075,9 @@ const Games: React.FC = () => {
                       </Button>
                     </CardFooter>
                   </Card>
-                </motion.div>
+              </motion.div>
               ))}
-            </div>
+          </div>
           </TabsContent>
         </Tabs>
       </main>
@@ -1085,7 +1085,7 @@ const Games: React.FC = () => {
       {/* Reward Animation Overlay */}
       <AnimatePresence>
         {showRewardAnimation && (
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -1123,7 +1123,7 @@ const Games: React.FC = () => {
               </div>
             </motion.div>
           </motion.div>
-        )}
+      )}
       </AnimatePresence>
       
       <BottomNav />
