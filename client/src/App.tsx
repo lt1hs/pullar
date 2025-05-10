@@ -3,15 +3,13 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/context/LanguageContext";
 import NotFound from "@/pages/not-found";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { useUser, useUserStore } from "./hooks/useUser";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Lazy loading all the pages
 const Home = lazy(() => import("./pages/Home"));
-const Login = lazy(() => import("./pages/Login"));
-const Register = lazy(() => import("./pages/Register"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Wallet = lazy(() => import("./pages/Wallet"));
 const Games = lazy(() => import("./pages/Games"));
@@ -20,6 +18,7 @@ const Social = lazy(() => import("./pages/Social"));
 const BotSettings = lazy(() => import("./pages/BotSettings"));
 const TradingBots = lazy(() => import("./pages/TradingBots"));
 const Store = lazy(() => import("./pages/Store"));
+const Settings = lazy(() => import("./pages/Settings"));
 
 function Router() {
   const { user, login } = useUser();
@@ -70,8 +69,6 @@ function Router() {
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>
         <Route path="/" component={Home} />
-        <Route path="/miners" component={Miners} />
-        <Route path="/clans" component={Clans} />
         <Route path="/games" component={Games} />
         <Route path="/profile" component={Profile} />
         <Route path="/settings" component={Settings} />

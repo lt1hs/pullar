@@ -151,13 +151,15 @@
   html[dir="rtl"] .pr-3 { padding-right: 0; padding-left: 0.75rem; }
   html[dir="rtl"] .pr-4 { padding-right: 0; padding-left: 1rem; }
   
+  /* Hide scrollbar for Chrome, Safari and Opera */
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
   
+  /* Hide scrollbar for IE, Edge and Firefox */
   .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 }
 
